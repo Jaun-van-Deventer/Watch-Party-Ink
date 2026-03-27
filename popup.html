@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WatchInk Beta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #E5173F;
+      --red-dark: #C01234;
+      --white: #FFFFFF;
+      --gray-100: #F2F2F4;
+      --gray-200: #E4E4E8;
+      --gray-400: #9999AA;
+      --gray-600: #555566;
+      --gray-900: #111118;
+      --green: #22C55E;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      width: 320px;
+      background: var(--white);
+      color: var(--gray-900);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+      padding: 18px 20px 16px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-mark svg { width: 14px; height: 14px; fill: white; }
+    .logo-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.2px;
+    }
+    .logo-beta {
+      font-size: 9px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.15);
+      padding: 2px 6px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      margin-top: 3px;
+    }
+    .body {
+      padding: 18px 20px;
+    }
+    .status-card {
+      background: var(--gray-100);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .status-icon {
+      font-size: 22px;
+    }
+    .status-info { flex: 1; }
+    .status-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+    .status-sub {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 1px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot.connected { background: var(--green); }
+    .dot.disconnected { background: var(--gray-400); }
+    .dot.in-room { background: var(--red); animation: pulse-red 2s infinite; }
+    @keyframes pulse-red {
+      0%,100% { box-shadow: 0 0 0 2px rgba(229,23,63,0.2); }
+      50% { box-shadow: 0 0 0 4px rgba(229,23,63,0.1); }
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 11px 16px;
+      border-radius: 10px;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      box-shadow: 0 3px 12px rgba(229,23,63,0.3);
+      margin-bottom: 8px;
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--gray-100);
+      color: var(--gray-600);
+      border: 1.5px solid var(--gray-200);
+    }
+    .btn-secondary:hover { background: var(--gray-200); }
+    .divider {
+      height: 1px;
+      background: var(--gray-200);
+      margin: 14px 0;
+    }
+    .info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--gray-400);
+    }
+    .info-row a {
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    #not-disney-msg {
+      text-align: center;
+      padding: 8px 0 4px;
+    }
+    #not-disney-msg p {
+      font-size: 13px;
+      color: var(--gray-400);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    #not-disney-msg a {
+      color: var(--red);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .room-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(229,23,63,0.08);
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: 'Syne', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <span class="logo-text">WatchInk</span>
+      <span class="logo-beta">Beta</span>
+    </div>
+    <div class="tagline">Sync. Watch. Together.</div>
+  </div>
+
+  <div class="body">
+    <!-- Status card -->
+    <div class="status-card" id="status-card">
+      <div class="status-icon" id="status-icon">🎬</div>
+      <div class="status-info">
+        <div class="status-title" id="status-title">Ready to sync</div>
+        <div class="status-sub" id="status-sub">Open Disney+ to start</div>
+      </div>
+      <div class="dot disconnected" id="status-dot"></div>
+    </div>
+
+    <!-- Action buttons -->
+    <div id="action-area">
+      <button class="btn btn-primary" id="open-disney-btn">
+        🏰 Open Disney+
+      </button>
+      <button class="btn btn-secondary" id="open-watchink-btn" style="display:none;">
+        ✦ Open WatchInk Panel
+      </button>
+    </div>
+
+    <div id="not-disney-msg" style="display:none;">
+      <p>Navigate to <a href="https://www.disneyplus.com" target="_blank">Disney+</a> and start watching to use WatchInk.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info-row">
+      <span>v1.0.0 Beta</span>
+      <span id="room-info-text">No active room</span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
